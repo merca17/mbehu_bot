@@ -49,7 +49,7 @@
 
     <!-- LEFT WHEELS-->
     <!--Center wheel-->
-    <joint name="left_wheel_joint" type="fixed">
+    <joint name="left_wheel_joint" type="continuous">
         <parent link="base_link"/>
         <child link="left_wheel"/>
         <origin xyz="0 0.085 0" rpy="-${pi/2} 0 0"/>
@@ -75,7 +75,7 @@
         <material>Gazebo/Red</material>
     </gazebo>
     <!--front wheel-->
-    <joint name="front_left_wheel_joint" type="continuous">
+    <joint name="front_left_wheel_joint" type="fixed">
         <parent link="base_link"/>
         <child link="front_left_wheel"/>
         <origin xyz="0.065 0.085 0" rpy="-${pi/2} 0 0"/>
@@ -128,7 +128,7 @@
     </gazebo>
     <!-- RIGHT WHEELS-->
     <!--Center wheel-->
-    <joint name="right_wheel_joint" type="fixed">
+    <joint name="right_wheel_joint" type="continuous">
         <parent link="base_link"/>
         <child link="right_wheel"/>
         <origin xyz="0 -0.085 0" rpy="${pi/2} 0 0"/>
@@ -180,7 +180,7 @@
         <material>Gazebo/Red</material>
     </gazebo>
     <!--back wheel-->
-    <joint name="back_right_wheel_joint" type="continuous">
+    <joint name="back_right_wheel_joint" type="fixed">
         <parent link="base_link"/>
         <child link="back_right_wheel"/>
         <origin xyz="-0.065 -0.085 0" rpy="${pi/2} 0 0"/>
