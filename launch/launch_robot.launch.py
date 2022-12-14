@@ -34,7 +34,12 @@ def generate_launch_description():
         parameters=[{'robot_description': robot_description},
                     controller_params_file]
     )
-   
+    # ultrasonico = Node(
+    #     package="ultrasinico",
+    #     executable="ultrasonic_to_LaserScan",
+    #     #parameters=[{'robot_description': robot_description},
+    #      #           controller_params_file]
+    # )
     # Include the Gazebo launch file, provided by the gazebo_ros package
 
     delayed_controller_manager = TimerAction(period=3.0, actions=[controller_manager])
@@ -62,10 +67,26 @@ def generate_launch_description():
         )
     )
 
+    # delayed_ultrasonico = TimerAction(period=6.0, actions=[ultrasonico])
+
+    # ultrasonico_spawner = Node(
+    #     package="ultrasonico",
+    #     executable="ultrasonic_to_LaserScan",
+    #     #arguments=["joint_broad"],
+    # )
+    # delayed_ultrasonico_spawner = RegisterEventHandler(
+    #     event_handler=OnProcessStart(
+    #         target_action=ultrasonico,
+    #         on_start=[ultrasonico_spawner],
+    #     )
+    # )
+
     # Launch them all!
     return LaunchDescription([
         rsp,
         delayed_controller_manager,
         delayed_diff_drive_spawner,
-        delayed_joint_broad_spawner
+        delayed_joint_broad_spawner #,
+        # delayed_ultrasonico,
+        # delayed_ultrasonico_spawner
     ])
