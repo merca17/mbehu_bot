@@ -243,4 +243,18 @@
             <origin xyz="0 0 0" rpy="0 0 0"/>
         </xacro:inertial_cylinder>        
     </link>
+    <link name="imu_link"/>
+    <joint
+        name="imu_joint"
+        type="fixed">
+        <origin
+        xyz="0.0 0 0.0"
+        rpy="0 -0.07 0" />
+        <parent
+        link="base_link" />
+        <child
+        link="imu_link" />
+        <axis
+        xyz="1 0 0" />
+    </joint>
 </robot>

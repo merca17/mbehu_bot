@@ -34,6 +34,7 @@ def generate_launch_description():
         parameters=[{'robot_description': robot_description},
                     controller_params_file]
     )
+    robot_localization_file_path = os.path.join(get_package_share_directory(package_name), 'config/ekf.yaml') 
     # ultrasonico = Node(
     #     package="ultrasinico",
     #     executable="ultrasonic_to_LaserScan",
@@ -67,6 +68,14 @@ def generate_launch_description():
         )
     )
 
+    start_robot_localization_cmd = Node(
+        package='robot_localization',
+        executable='ekf_node',
+        name='ekf_filter_node',
+        output='screen',
+        parameters=[robot_localization_file_path])
+
+
     # delayed_ultrasonico = TimerAction(period=6.0, actions=[ultrasonico])
 
     # ultrasonico_spawner = Node(
@@ -84,9 +93,10 @@ def generate_launch_description():
     # Launch them all!
     return LaunchDescription([
         rsp,
+        start_robot_localization_cmd,
         delayed_controller_manager,
         delayed_diff_drive_spawner,
-        delayed_joint_broad_spawner #,
+        delayed_joint_broad_spawner
         # delayed_ultrasonico,
         # delayed_ultrasonico_spawner
     ])
